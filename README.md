@@ -13,11 +13,24 @@ Run the following command from your terminal:
 
 or add this to require section in your composer.json file:
 
- ```
- "indragunawan/laravel-env-handler": "0.*"
- ```
+ ``` json
+{
+    "require": {
+        "indragunawan/laravel-env-handler": "0.*"
+    }
+}
+```
 
-then run ```composer update```
+run ```composer update```
+
+Then add Service provider to `config/app.php`
+
+``` php
+    'providers' => [
+        // ...
+        'IndraGunawan\LaravelEnvHandler\EnvHandlerServiceProvider'
+    ]
+```
 
 ## Usage
 via command line
@@ -30,18 +43,14 @@ or automatically check is there a new environment configuration after ```compose
 
 ```json
 {
-    ...
     "scripts": {
         "post-install-cmd": [
-            "php artisan env:update",
-            ...
+            "php artisan env:update"
         ],
         "post-update-cmd": [
-            "php artisan env:update",
-            ...
+            "php artisan env:update"
         ]
     }
-    ...
 }
 ```
 
