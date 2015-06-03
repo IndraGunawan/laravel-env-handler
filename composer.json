@@ -1,6 +1,6 @@
 {
     "name": "indragunawan/laravel-env-handler",
-    "description": "Laravel artisan command to handling the environment configuration",
+    "description": "Laravel 5 artisan command to handling the environment configuration (.env)",
     "keywords": ["laravel", "environment", "configuration", "artisan", "dotenv"],
     "license": "MIT",
     "authors": [
