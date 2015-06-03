@@ -5,6 +5,7 @@ namespace IndraGunawan\LaravelEnvHandler\Console;
 use Dotenv;
 use InvalidArgumentException;
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Question\Question;
 
 class EnvUpdateCommand extends Command
@@ -56,6 +57,18 @@ class EnvUpdateCommand extends Command
     }
 
     /**
+     * Command options
+     *
+     * @return [][]
+     */
+    protected function getOptions()
+    {
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Force ask all environment parameters.', null]
+        ];
+    }
+
+    /**
      * get the env value if not exists
      * @param  array  $expectedEnv
      * @param  array  $actualEnv
@@ -67,12 +80,21 @@ class EnvUpdateCommand extends Command
         $isStarted = false;
         foreach ($expectedEnv as $key => $defaultValue) {
             if (array_key_exists($key, $actualEnv)) {
-                continue;
+                if ($this->option('force')) {
+                    $defaultValue = $actualEnv[$key];
+                } else {
+                    $actualValue .= sprintf("%s=%s\n", $key, $actualEnv[$key]);
+                    continue;
+                }
             }
 
             if (!$isStarted) {
                 $isStarted = true;
-                $this->comment('Some parameters are missing. Please provide them.');
+                if ($this->option('force')) {
+                    $this->comment('Update all parameters. Please provide them.');
+                } else {
+                    $this->comment('Some parameters are missing. Please provide them.');
+                }
             }
 
             $value = $this->ask($key, $defaultValue);
