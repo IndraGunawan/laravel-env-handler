@@ -1,6 +1,6 @@
 # Managing your Laravel 5 environment (.env)
 
-This tool allows you to manage your ignored environment configuration when running a composer install / update or even manually call the command. It works when storing the .env.example file under the application root. Other keys are copied without change.
+This package allows you to manage your ignored environment configuration when you are running a composer install / update or even manually call the command. It works when storing the .env.example file under the application root. Other keys are copied without change.
 
 ## Installation
 
@@ -39,7 +39,7 @@ via command line
 $ php artisan env:update
 ```
 
-or automatically check is there a new environment configuration after ```composer install``` or ```composer update```, add the following in your root composer.json file:
+or automatically check whether there is new environment configuration after ```composer install``` or ```composer update```, add the following in your root composer.json file:
 
 ```json
 {
@@ -53,6 +53,12 @@ or automatically check is there a new environment configuration after ```compose
     }
 }
 ```
+
+### Options
+```sh
+$ php artisan env:update --force
+```
+execute the update even though there are no new environment parameters
 
 ## Credits
 
