@@ -39,20 +39,6 @@ via command line
 $ php artisan env:update
 ```
 
-or automatically check whether there is new environment configuration after ```composer install``` or ```composer update```, add the following in your root composer.json file:
-
-```json
-{
-    "scripts": {
-        "post-install-cmd": [
-            "php artisan env:update"
-        ],
-        "post-update-cmd": [
-            "php artisan env:update"
-        ]
-    }
-}
-```
 
 ### Options
 ```sh
